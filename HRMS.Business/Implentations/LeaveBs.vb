@@ -97,4 +97,16 @@ Public Class LeaveBs
             Return ApiResponse(Of NoData).Fail(404, "Item not found")
         End If
     End Function
+
+    Public Async Function GetLeavesWithinDateRange(startDate As DateTime, endDate As DateTime) As Task(Of ApiResponse(Of List(Of LeafGetDto))) Implements ILeaveBs.GetLeavesWithinDateRange
+        Dim includeList As New List(Of String)
+        includeList.Add("Leavetype")
+
+        includeList.Add("Employee")
+
+        Dim repoResponse = Await _repo.GetLeavesDateRange(startDate, endDate, includeList:=includeList)
+        Dim mapped = _mapper.Map(Of List(Of LeafGetDto))(repoResponse)
+
+        Return ApiResponse(Of List(Of LeafGetDto)).Success(200, mapped)
+    End Function
 End Class

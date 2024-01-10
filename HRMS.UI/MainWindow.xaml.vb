@@ -96,5 +96,12 @@ Namespace HRMS.UI
             MainContentPanel.Children.Add(salaryPage)
         End Sub
 
+        Private Sub LeaveEmployeeButton_Click(ByVal sender As Object, ByVal e As ItemClickEventArgs)
+            _selector = 1
+            MainContentPanel.Children.Clear()
+            Dim leaveEmployee As New LeaveEmployeePage()
+            _page = leaveEmployee
+            MainContentPanel.Children.Add(leaveEmployee)
+        End Sub
     End Class
 End Namespace

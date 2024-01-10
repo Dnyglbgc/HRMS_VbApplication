@@ -8,4 +8,5 @@ Public Interface ILeaveBs
     Function SubtractAnnualLeave(id As Long, dto As LeafPutDto) As Task(Of ApiResponse(Of LeafPutDto))
     Function Delete(id As Long) As Task(Of ApiResponse(Of NoData))
     Function GetAll() As Task(Of ApiResponse(Of List(Of LeafGetDto)))
+    Function GetLeavesWithinDateRange(startDate As DateTime, endDate As DateTime) As Task(Of ApiResponse(Of List(Of LeafGetDto)))
 End Interface

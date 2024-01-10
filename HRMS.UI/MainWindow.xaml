@@ -46,6 +46,7 @@
                         <dxb:BarButtonItem Content="Mülakat" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Document.svg}" ItemClick="InterviewButton_Click"/>
                         <dxb:BarButtonItem Content="Ayrılanlar" LargeGlyph="{dx:DXImage SvgImages/HybridDemoIcons/Tiles/HybridDemo_On Leave.svg}" ItemClick="LeaveButton_Click"/>
                         <dxb:BarButtonItem Content="Maaş" LargeGlyph="{dx:DXImage SvgImages/HybridDemoIcons/Tiles/HybridDemo_Salaried.svg}" ItemClick="SalaryButton_Click"/>
+                      <dxb:BarButtonItem Content="İzinli Personel" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Calendar.svg}" ItemClick="LeaveEmployeeButton_Click"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
 

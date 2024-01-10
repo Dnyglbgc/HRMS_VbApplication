@@ -48,4 +48,9 @@ Public Class LeaveController
         Dim response = Await _service.Delete(id)
         Return SendResponse(response)
     End Function
+    <HttpGet("GetLeavesWithinDateRange")>
+    Public Async Function GetLeavesEmployeeWithinDateRange(<FromQuery> startdate As DateTime, <FromQuery> enddate As DateTime) As Task(Of IActionResult)
+        Dim result As ApiResponse(Of List(Of LeafGetDto)) = Await _service.GetLeavesWithinDateRange(startdate, enddate)
+        Return SendResponse(result)
+    End Function
 End Class

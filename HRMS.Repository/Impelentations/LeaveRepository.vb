@@ -9,7 +9,9 @@ Public Class LeaveRepository : Inherits BaseRepository(Of Leaf, Long, HRMSContex
 
     Public Sub New(context As HRMSContext)
         MyBase.New(context)
+        _context = context
     End Sub
+
 
     Public Async Function ManageLeave(leaveId As Long?, startDate As DateTime, endDate As DateTime, status As String, employeeId As Long, leaveTypeId As Long, operation As String) As Task(Of String) Implements ILeaveRepository.ManageLeave
         Return Await Task.Run(Function()
@@ -32,5 +34,26 @@ Public Class LeaveRepository : Inherits BaseRepository(Of Leaf, Long, HRMSContex
                                       End Using
                                   End Using
                               End Function)
+    End Function
+
+    Public Async Function GetLeavesDateRange(startDate As DateTime, endDate As DateTime, Optional includeList As List(Of String) = Nothing) As Task(Of List(Of Leaf)) Implements ILeaveRepository.GetLeavesDateRange
+
+        If _context Is Nothing Then
+
+            Return New List(Of Leaf)()
+        End If
+
+        Dim queryable As IQueryable(Of Leaf) = _context.Leaves
+
+        If includeList IsNot Nothing Then
+            For Each include In includeList
+                queryable = queryable.Include(include)
+            Next
+        End If
+
+        Return Await queryable.
+       Where(Function(l) l.Startdate >= startDate AndAlso l.Enddate <= endDate).
+       ToListAsync()
+
     End Function
 End Class
